@@ -22,16 +22,16 @@ def search_jobs():
 def send_email(results):
     sender = os.environ["SMTP_USER"]
     password = os.environ["SMTP_PASS"]
-    recipient = "saipramod1449@gmail.com"
+    recipient = os.environ["RECIPIENT_EMAIL"]
 
     msg = EmailMessage()
     msg["Subject"] = "Daily AI/GenAI Fresher Job Updates"
     msg["From"] = sender
     msg["To"] = recipient
 
-    body = f"Checked at: {datetime.now()}
+    # FIXED LINE - Proper string
+    body = f"Checked at: {datetime.now()}\n\n"
 
-"
     for r in results:
         title = r.get("title", "")
         link = r.get("link", "")
